@@ -48,15 +48,33 @@ export default class Service {
     if (!predictions.length) return false;
 
     for (const prediction of predictions) {
+      // Right eye parameters
       const lowerRight = prediction.annotations.rightEyeUpper0;
       const upperRight = prediction.annotations.rightEyeLower0;
       const rightEAR = this.#getEAR(upperRight, lowerRight);
 
+      // Left eye parameters
       const lowerLeft = prediction.annotations.leftEyeUpper0;
       const upperLeft = prediction.annotations.leftEyeLower0;
       const leftEAR = this.#getEAR(upperLeft, lowerLeft);
 
       const blinked = leftEAR <= EAR_THRESHOLD && rightEAR <= EAR_THRESHOLD;
+
+      // Logic to move the rig eye
+      const blinkedRight = rightEAR <= EAR_THRESHOLD && leftEAR > EAR_THRESHOLD;
+      // Logic to move the left eye
+      const blinkedLeft = leftEAR <= EAR_THRESHOLD && rightEAR > EAR_THRESHOLD;
+
+      // if (blinkedRight) {
+      //   console.log("Voce piscou o olho direito");
+      //   continue;
+      // }
+
+      // if (blinkedLeft) {
+      //   console.log("Voce piscou o olho esquerdo");
+      //   continue;
+      // }
+
       if (!blinked) continue;
       if (!shouldRun()) continue;
 

@@ -1,7 +1,7 @@
-import Camera from "../../../lib/shared/camera.js";
 import { supportsWorkerType } from "../../../lib/shared/util.js";
 import Controller from "./controller.js";
 import Service from "./service.js";
+import Camera from "../../../lib/shared/camera.js";
 import View from "./view.js";
 
 async function getWorker() {
@@ -31,7 +31,7 @@ async function getWorker() {
   const workerMock = {
     async postMessage(video) {
       const blinked = await service.handBlinked(video);
-      if (!blinked) return;
+      if (!blinkedLeft) return;
       workerMock.onmessage({ data: { blinked } });
     },
     onmessage(msg) {},

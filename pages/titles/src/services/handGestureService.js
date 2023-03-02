@@ -11,28 +11,36 @@ export default class HandGestureService {
     this.#handPoseDetection = handPoseDetection;
     this.#handsVersion = handsVersion;
   }
-  async estimate(keypointes3D) {
-    const predictions = await this.#gestureEstimator.estimate(
-      this.#getLandMarksFromKeyPoints(keypointes3D),
+  async estimate(hand) {
+    const prediction = await this.#gestureEstimator.estimate(
+      this.#getLandMarksFromKeyPoints(hand.keypoints3D),
       // porcentagem de confiança do gesto exp 90%
       9
     );
+    const handedness = hand.handedness;
+    const predictions = {
+      prediction,
+      handedness,
+    };
 
-    return predictions.gestures;
+    return predictions;
   }
 
   async *detectGestures(predictions) {
     for (const hand of predictions) {
       if (!hand.keypoints3D) continue;
-      const gestures = await this.estimate(hand.keypoints3D);
-      console.log(hand);
+
+      const gesture = await this.estimate(hand);
+      const handedness = gesture.handedness;
+
+      const gestures = await gesture.prediction.gestures;
       if (!gestures.length) continue;
 
       const result = gestures.reduce((p, n) => (p.score > n.score ? p : n));
       const { x, y } = hand.keypoints.find(
         (keypoint) => keypoint.name == "index_finger_tip"
       );
-      yield { event: result.name, x, y };
+      yield { event: result.name, x, y, handedness };
     }
   }
 

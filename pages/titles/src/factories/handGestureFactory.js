@@ -1,19 +1,20 @@
-import CardsController from "../controllers/cardsController.js";
-import CardsView from "../views/cardsView.js";
-import CardsService from "../services/cardsService.js";
+import Camera from "../../../../lib/shared/camera.js";
+import HandGestureController from "../controllers/handGestureController.js";
+import HandGestureService from "../services/handGestureService.js";
+import HandGestureView from "../views/handGestureView.js";
 
-const cardListWorker = new Worker(`./src/workers/cardListWorker.js`, {
-  type: "module",
-});
+const camera = await Camera.init();
 
 const [rootPath] = window.location.href.split("/pages/");
 const factory = {
-  async initalize() {
-    return CardsController.initialize({
-      view: new CardsView(),
-      service: new CardsService({
-        dbUrl: `${rootPath}/assets/database.json`,
-        cardListWorker,
+  async initialize() {
+    return HandGestureController.initialize({
+      camera,
+      view: new HandGestureView(),
+      service: new HandGestureService({
+        fingerpose: window.fp,
+        handPoseDetection: window.handPoseDetection,
+        handsVersion: window.VERSION,
       }),
     });
   },

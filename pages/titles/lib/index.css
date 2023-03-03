@@ -1200,5 +1200,5 @@ a {
   /*faz ficar em cima dos elementos */
   position: fixed;
   /* fica à frente dos elementos */
-  z-index: 2;
+  z-index: 50;
 }

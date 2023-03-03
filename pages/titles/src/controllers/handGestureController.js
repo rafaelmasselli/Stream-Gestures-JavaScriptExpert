@@ -36,6 +36,10 @@ export default class HandGestureController {
   async #estimateHands() {
     try {
       const hands = await this.#service.estimateHands(this.#camera.video);
+      this.#view.clearCanvas();
+
+      if (hands?.length) this.#view.drawResults(hands);
+
       for await (const {
         event,
         x,
@@ -43,7 +47,6 @@ export default class HandGestureController {
         handedness,
       } of this.#service.detectGestures(hands)) {
         // Reconhece os gesto por mao individual
-        // console.log(event);
         // if (handedness.includes("Right") && event.includes("scroll-up"))
         //   continue;
         // if (handedness.includes("Left") && event.includes("scroll-down"))

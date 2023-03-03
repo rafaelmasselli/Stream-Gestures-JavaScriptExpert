@@ -47,7 +47,7 @@ export default class HandGestureService {
         (keypoint) => keypoint.name == "index_finger_tip"
       );
       yield { event: result.name, x, y, handedness };
-      console.log("detected", this.#gestureStrings[result.name]);
+      // console.log("detected", this.#gestureStrings[result.name]);
     }
   }
 

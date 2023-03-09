@@ -14,7 +14,7 @@ Marque esse projeto com uma estrela 🌟
 
 ## Live demo
 
-- Para testar o projeto final [clique aqui](https://rafaelmasselli.github.io/Stream-Gestures-JavaScriptExpert/pages/titles/)
+- Para testar o projeto final [clique aqui](https://rafaelmasselli.github.io/interactive-stream-platform-with-motions/pages/titles/)
 
 ## Running
 

@@ -1,9 +1,5 @@
 # JSExpertMax Gesture Controller - Semana JS Expert 7.0
 
-Seja bem vindo(a) à sétima Semana Javascript Expert. Este é o código inicial para iniciar nossa jornada.
-
-Marque esse projeto com uma estrela 🌟
-
 ## Preview
 
 <img width=100% src="./.github/view project.gif">
@@ -44,15 +40,9 @@ Marque esse projeto com uma estrela 🌟
 - [x] - Aula 04 - Usar as mãos virtuais também no Video Player
 - Desafio Plus: cobrir o projeto com 100% de code coverage
 
-### Links mostrados nos aulas:
+### Links de referênciaa:
 
 - Reuni todos os links em [referências](./referencias.md)
-
-### Considerações
-
-- Tire suas dúvidas sobre os desafios em nossa comunidade, o objetivo é você aprender de forma divertida. Surgiu dúvidas? Pergunte por lá!
-
-- Ao completar qualquer um dos desafios, envie no canal **#desafios** da comunidade no **Discord**
 
 ### FAQ
 
